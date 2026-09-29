@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Duplicate Tab Finder</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CURRENT WINDOW</p>
+        <h1>Duplicate Tab Finder</h1>
+        <p id="summary" class="summary" aria-live="polite">Checking your tabs…</p>
+        <label class="setting">
+          <input id="show-site-groups" type="checkbox" />
+          <span>
+            <strong>Tabs by site</strong>
+            <small>Show tabs from the same website.</small>
+          </span>
+        </label>
+      </header>
+
+      <section id="empty-state" class="empty-state" hidden>
+        <span aria-hidden="true">✓</span>
+        <p>No duplicate tabs found.</p>
+      </section>
+
+      <div id="results" class="results" hidden>
+        <section id="groups" class="groups" aria-label="Duplicate tab groups"></section>
+        <section id="site-groups" class="groups site-groups" aria-label="Tabs grouped by site" hidden></section>
+      </div>
+
+      <div class="actions">
+        <button id="refresh-button" class="secondary" type="button">Refresh</button>
+        <button id="remove-button" class="danger" type="button" disabled>Remove duplicates</button>
+      </div>
+      <p id="status" class="status" aria-live="polite"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

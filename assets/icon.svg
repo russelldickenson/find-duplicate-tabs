@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-labelledby="duplicate-tab-finder-title">
+  <title id="duplicate-tab-finder-title">Duplicate Tab Finder</title>
+  <rect width="128" height="128" rx="28" fill="#277356" />
+  <rect x="12" y="24" width="76" height="56" rx="12" fill="#8cb4a4" />
+  <rect x="39" y="48" width="76" height="56" rx="12" fill="#ffffff" />
+  <circle cx="106" cy="105" r="18.5" fill="#277356" />
+  <circle cx="106" cy="105" r="15" fill="#a9493e" />
+  <rect x="93.5" y="98.5" width="25" height="13" rx="6.5" fill="#ffffff" />
+</svg>
