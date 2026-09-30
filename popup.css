@@ -46,9 +46,13 @@ h1 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
 
 .tab-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
 
-.keep { margin-left: auto; color: #277356; font-size: 11px; font-weight: 750; white-space: nowrap; }
-
-.remove { margin-left: auto; color: #a4493e; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.dup-row { display: flex; align-items: center; gap: 10px; padding: 11px 12px; }
+.dup-row img { width: 16px; height: 16px; flex: 0 0 auto; }
+.dup-text { display: grid; flex: 1; min-width: 0; gap: 2px; }
+.dup-url { overflow: hidden; color: #766f65; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.dup-count { display: grid; flex: 0 0 auto; justify-items: end; gap: 1px; }
+.dup-count strong { font-size: 13px; }
+.dup-count small { color: #a4493e; font-size: 11px; font-weight: 700; }
 
 .empty-state { display: grid; place-items: center; gap: 8px; padding: 44px 16px; color: #625d56; text-align: center; }
 

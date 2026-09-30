@@ -71,29 +71,59 @@ function findSiteGroups(tabs) {
     .sort((a, b) => a.site.localeCompare(b.site));
 }
 
-function makeTabItem(tab, shouldKeep) {
+function makeFavicon(tab) {
+  if (!tab.favIconUrl) return null;
+  const icon = document.createElement('img');
+  icon.src = tab.favIconUrl;
+  icon.alt = '';
+  icon.addEventListener('error', () => icon.remove());
+  return icon;
+}
+
+function makeTabItem(tab) {
   const item = document.createElement('li');
   item.className = 'tab-item';
 
-  if (tab.favIconUrl) {
-    const icon = document.createElement('img');
-    icon.src = tab.favIconUrl;
-    icon.alt = '';
-    icon.addEventListener('error', () => icon.remove());
-    item.append(icon);
-  }
+  const icon = makeFavicon(tab);
+  if (icon) item.append(icon);
 
   const title = document.createElement('span');
   title.className = 'tab-title';
   title.textContent = tab.title || tab.url;
   title.title = tab.url;
   item.append(title);
-
-  const action = document.createElement('span');
-  action.className = shouldKeep ? 'keep' : 'remove';
-  action.textContent = shouldKeep ? 'Keep tab' : 'Delete tab';
-  item.append(action);
   return item;
+}
+
+function makeDuplicateGroupItem(group) {
+  const [first] = group.tabs;
+  const section = document.createElement('article');
+  section.className = 'group dup-row';
+
+  const icon = makeFavicon(first);
+  if (icon) section.append(icon);
+
+  const text = document.createElement('div');
+  text.className = 'dup-text';
+  const title = document.createElement('span');
+  title.className = 'tab-title';
+  title.textContent = first.title || group.url;
+  const url = document.createElement('span');
+  url.className = 'dup-url';
+  url.textContent = group.url;
+  url.title = group.url;
+  text.append(title, url);
+
+  const count = document.createElement('div');
+  count.className = 'dup-count';
+  const badge = document.createElement('strong');
+  badge.textContent = `×${group.tabs.length}`;
+  const closing = document.createElement('small');
+  closing.textContent = `close ${group.tabs.length - 1}`;
+  count.append(badge, closing);
+
+  section.append(text, count);
+  return section;
 }
 
 function render() {
@@ -113,27 +143,7 @@ function render() {
       ? `No duplicate tabs. ${siteGroups.length} site${siteGroups.length === 1 ? '' : 's'} has multiple tabs.`
       : 'Everything is tidy in this window.';
 
-  for (const group of duplicateGroups) {
-    const section = document.createElement('article');
-    section.className = 'group';
-    const heading = document.createElement('div');
-    heading.className = 'group-heading';
-    const label = document.createElement('span');
-    try {
-      label.textContent = new URL(group.url).hostname || group.url;
-    } catch {
-      label.textContent = group.url;
-    }
-    const count = document.createElement('span');
-    count.textContent = `${group.tabs.length} tabs`;
-    heading.append(label, count);
-
-    const tabList = document.createElement('ul');
-    tabList.className = 'tab-list';
-    group.tabs.forEach((tab, index) => tabList.append(makeTabItem(tab, index === 0)));
-    section.append(heading, tabList);
-    groupsElement.append(section);
-  }
+  for (const group of duplicateGroups) groupsElement.append(makeDuplicateGroupItem(group));
 
   for (const group of siteGroups) {
     const section = document.createElement('article');
@@ -148,7 +158,7 @@ function render() {
 
     const tabList = document.createElement('ul');
     tabList.className = 'tab-list';
-    group.tabs.forEach((tab) => tabList.append(makeTabItem(tab, false)));
+    group.tabs.forEach((tab) => tabList.append(makeTabItem(tab)));
     section.append(heading, tabList);
     siteGroupsElement.append(section);
   }
