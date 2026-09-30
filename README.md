@@ -14,7 +14,7 @@
 
 <div align="center">
 
-<img src="assets/screenshot.png" alt="Duplicate Tab Finder popup listing two duplicate sets, each with page title, URL, tab count and number to close" width="340" />
+<img src="assets/screenshot.png" alt="Duplicate Tab Finder popup listing two duplicate sets, each with page title, URL, tab count and number to close" width="384" />
 
 </div>
 
@@ -54,10 +54,10 @@ Possible duplicates are guesses, so they are for review only. The extension neve
 
 1. Click the **Duplicate Tab Finder** toolbar icon.
 2. Review the duplicate sets. Each row shows how many tabs will be closed.
-3. Click **Remove duplicates** and confirm. The first tab in each set stays open.
+3. Click **Close duplicate tabs** and confirm. The first tab in each set stays open.
 4. Click **Refresh** to rescan after changing your tabs.
 
-To review tabs that might be duplicates, tick **Include possible duplicates**. The setting is remembered. **Remove duplicates** never touches these; close them individually with **×**.
+To review tabs that might be duplicates, tick **Include possible duplicates**. The setting is remembered. **Close duplicate tabs** never touches these; close them individually with **×**.
 
 ## Installation
 
@@ -92,7 +92,7 @@ tools/generate_icons.py    Rebuilds the icon files above
 
 ## Icon
 
-The mark is the same tab twice: a muted duplicate behind, the tab that stays open in front, and the extra one badged in the same red the popup uses for **Remove duplicates**.
+The mark is the same tab twice: a muted duplicate behind, the tab that stays open in front, and the extra one badged in the same red the popup uses for **Close duplicate tabs**.
 
 Every icon file is generated from the geometry in `tools/generate_icons.py`, which also writes the `assets/icon.svg` master, so the vector and the PNGs can never fall out of sync:
 
