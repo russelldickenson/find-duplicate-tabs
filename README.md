@@ -14,7 +14,7 @@
 
 <div align="center">
 
-<img src="assets/screenshot.png" alt="Duplicate Tab Finder popup listing two duplicate sets with Keep tab and Delete tab labels" width="340" />
+<img src="assets/screenshot.png" alt="Duplicate Tab Finder popup listing two duplicate sets, each with page title, URL, tab count and number to close" width="340" />
 
 </div>
 
@@ -24,23 +24,40 @@
 
 A busy browsing session collects the same page over and over. Duplicate Tab Finder shows you which tabs in the current window point at the same page, then closes the extras. The first tab in each set always stays open.
 
+## What counts as a duplicate?
+
+**Duplicate tab**: two or more tabs open on the same page. URLs are compared after ignoring differences that don't change the page:
+
+- the `#fragment`
+- common tracking parameters (`utm_*`, `gclid`, `fbclid`, `msclkid`, `ref`, and similar)
+- `http` vs `https`, a leading `www.`, a trailing slash, and a trailing `/index.html`
+- the order of query parameters
+
+So `http://www.example.com/a/` and `https://example.com/a?utm_source=x#top` are duplicates.
+
+**Possible duplicate tab**: tabs that look alike but have different URLs, so they might or might not be the same page. Two rules find them:
+
+- **Same title**: the titles match (ignoring case and extra spaces) but the URLs differ.
+- **Same page, different query**: same site and path, but a different query string, such as `/post?id=1` and `/post?id=2`.
+
+Possible duplicates are guesses, so they are for review only. The extension never closes them automatically.
+
 ## Features
 
-- **Duplicate detection** for the current window, grouped into sets of matching tabs.
-- **Smart matching** ignores the `#fragment` and common tracking parameters (`utm_*`, `gclid`, `fbclid`, `msclkid`, `ref`, and similar), so `page?utm_source=x` and `page` count as the same tab.
-- **Clear keep/delete labels** on every tab before anything is closed.
-- **One-click cleanup** with a confirmation prompt.
-- **Tabs by site** (optional setting) lists tabs that share a website, for reviewing a crowded window. Site groups are informational only and are never closed by the extension.
-- **Private by design**: no data collected, nothing sent anywhere. The only stored value is your "Tabs by site" preference.
+- **Duplicate detection** for the current window, grouped into sets of matching tabs. Each set is one row showing the page title, its URL, the number of tabs (`×3`) and how many would be closed.
+- **Smart matching** as described above.
+- **One-click cleanup** with a confirmation prompt. The first (leftmost) tab in each set stays open.
+- **Include possible duplicates** (optional setting) also lists possible duplicate tabs, grouped by the reason they matched. The part of each URL that differs is highlighted. Click a tab to switch to it, or use **×** to close just that one.
+- **Private by design**: no data collected, nothing sent anywhere. The only stored value is your "Include possible duplicates" preference.
 
 ## Usage
 
 1. Click the **Duplicate Tab Finder** toolbar icon.
-2. Review the duplicate sets. Each tab is labelled **Keep tab** or **Delete tab**.
+2. Review the duplicate sets. Each row shows how many tabs will be closed.
 3. Click **Remove duplicates** and confirm. The first tab in each set stays open.
 4. Click **Refresh** to rescan after changing your tabs.
 
-To browse tabs from the same website, tick **Tabs by site**. The setting is remembered.
+To review tabs that might be duplicates, tick **Include possible duplicates**. The setting is remembered. **Remove duplicates** never touches these; close them individually with **×**.
 
 ## Installation
 
@@ -59,7 +76,7 @@ Load it as an unpacked extension:
 | Permission | Why it's needed |
 | --- | --- |
 | `tabs` | Read tab URLs and titles in the current window, and close duplicates. |
-| `storage` | Remember the "Tabs by site" setting. |
+| `storage` | Remember the "Include possible duplicates" setting. |
 
 ## Project structure
 
@@ -67,7 +84,7 @@ Load it as an unpacked extension:
 manifest.json              Extension manifest (Manifest V3)
 popup.html                 Popup markup
 popup.css                  Popup styles
-popup.js                   Duplicate detection, rendering, and tab removal
+popup.js                   Duplicate matching, rendering, and tab removal
 assets/icon.svg            Vector master for the toolbar and store icon
 assets/icons/              Generated PNG icons (16, 32, 48, 128 px)
 tools/generate_icons.py    Rebuilds the icon files above

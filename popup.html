@@ -13,10 +13,10 @@
         <h1>Duplicate Tab Finder</h1>
         <p id="summary" class="summary" aria-live="polite">Checking your tabs…</p>
         <label class="setting">
-          <input id="show-site-groups" type="checkbox" />
+          <input id="show-similar" type="checkbox" />
           <span>
-            <strong>Tabs by site</strong>
-            <small>Show tabs from the same website.</small>
+            <strong>Include possible duplicates</strong>
+            <small>Also show tabs that look alike but have different URLs.</small>
           </span>
         </label>
       </header>
@@ -28,7 +28,7 @@
 
       <div id="results" class="results" hidden>
         <section id="groups" class="groups" aria-label="Duplicate tab groups"></section>
-        <section id="site-groups" class="groups site-groups" aria-label="Tabs grouped by site" hidden></section>
+        <section id="similar-groups" class="groups similar-groups" aria-label="Possible duplicate tabs" hidden></section>
       </div>
 
       <div class="actions">
