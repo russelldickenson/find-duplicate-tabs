@@ -48,7 +48,7 @@ Possible duplicates are guesses, so they are for review only. The extension neve
 - **Smart matching** as described above.
 - **One-click cleanup** with a confirmation prompt. The first (leftmost) tab in each set stays open.
 - **Include possible duplicates** (optional setting) also lists possible duplicate tabs, grouped by the reason they matched. The part of each URL that differs is highlighted. Hover a tab to see its full URL, click it to switch to it, or use **×** to close just that one.
-- **Private by design**: no data collected, nothing sent anywhere. The only stored value is your "Include possible duplicates" preference.
+- **Private by design**: no data collected, stored or sent anywhere.
 
 ## Usage
 
@@ -57,7 +57,7 @@ Possible duplicates are guesses, so they are for review only. The extension neve
 3. Click **Close duplicate tabs** and confirm. The first tab in each set stays open.
 4. Click **Refresh** to rescan after changing your tabs.
 
-To review tabs that might be duplicates, tick **Include possible duplicates**. The setting is remembered. **Close duplicate tabs** never touches these; close them individually with **×**.
+To review tabs that might be duplicates, tick **Include possible duplicates**. It is off each time you open the popup. **Close duplicate tabs** never touches these; close them individually with **×**.
 
 ## Installation
 
@@ -76,7 +76,6 @@ Load it as an unpacked extension:
 | Permission | Why it's needed |
 | --- | --- |
 | `tabs` | Read tab URLs and titles in the current window, and close duplicates. |
-| `storage` | Remember the "Include possible duplicates" setting. |
 
 ## Project structure
 
@@ -87,21 +86,7 @@ popup.css                  Popup styles
 popup.js                   Duplicate matching, rendering, and tab removal
 assets/icon.svg            Vector master for the toolbar and store icon
 assets/icons/              Generated PNG icons (16, 32, 48, 128 px)
-tools/generate_icons.py    Rebuilds the icon files above
 ```
-
-## Icon
-
-The mark is the same tab twice: a muted duplicate behind, the tab that stays open in front, and the extra one badged in the same red the popup uses for **Close duplicate tabs**.
-
-Every icon file is generated from the geometry in `tools/generate_icons.py`, which also writes the `assets/icon.svg` master, so the vector and the PNGs can never fall out of sync:
-
-```bash
-python3 -m pip install pillow
-python3 tools/generate_icons.py
-```
-
-Edit the colors and shapes at the top of that file to change the icon, then commit the regenerated files.
 
 ## Authors
 

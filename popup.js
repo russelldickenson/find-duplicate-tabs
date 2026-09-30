@@ -307,17 +307,9 @@ refreshButton.addEventListener('click', () => {
 removeButton.addEventListener('click', () => {
   void removeDuplicates();
 });
-showSimilarCheckbox.addEventListener('change', async () => {
+showSimilarCheckbox.addEventListener('change', () => {
   showSimilar = showSimilarCheckbox.checked;
-  await chrome.storage.sync.set({ showSiteGroups: showSimilar });
   render();
 });
 
-async function initialize() {
-  const { showSiteGroups: savedShowSimilar = false } = await chrome.storage.sync.get('showSiteGroups');
-  showSimilar = savedShowSimilar;
-  showSimilarCheckbox.checked = showSimilar;
-  await scan();
-}
-
-void initialize();
+void scan();
