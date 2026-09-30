@@ -44,16 +44,16 @@ Possible duplicates are guesses, so they are for review only. The extension neve
 
 ## Features
 
-- **Duplicate detection** for the current window, grouped into sets of matching tabs. Each set is one row showing the page title, its URL, the number of tabs (`×3`) and how many would be closed.
+- **Duplicate detection** for the current window, grouped into sets of matching tabs. Each set is one row showing the page title, its URL, the number of tabs (`×3`) and how many would be closed. A summary above the list totals the tabs that can be closed. Long URLs wrap, and hovering a row shows the full URL.
 - **Smart matching** as described above.
 - **One-click cleanup** with a confirmation prompt. The first (leftmost) tab in each set stays open.
-- **Include possible duplicates** (optional setting) also lists possible duplicate tabs, grouped by the reason they matched. The part of each URL that differs is highlighted. Click a tab to switch to it, or use **×** to close just that one.
+- **Include possible duplicates** (optional setting) also lists possible duplicate tabs, grouped by the reason they matched. The part of each URL that differs is highlighted. Hover a tab to see its full URL, click it to switch to it, or use **×** to close just that one.
 - **Private by design**: no data collected, nothing sent anywhere. The only stored value is your "Include possible duplicates" preference.
 
 ## Usage
 
 1. Click the **Duplicate Tab Finder** toolbar icon.
-2. Review the duplicate sets. Each row shows how many tabs will be closed.
+2. Review the duplicate sets. The summary above the list says how many tabs can be closed, and each row shows its own count.
 3. Click **Close duplicate tabs** and confirm. The first tab in each set stays open.
 4. Click **Refresh** to rescan after changing your tabs.
 
