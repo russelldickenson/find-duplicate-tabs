@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Duplicate Tab Finder",
+  "name": "Find Duplicate Tabs",
   "version": "1.1.0",
-  "description": "Find and close duplicate tabs in the current Chrome window.",
+  "description": "Find and close duplicate tabs in the current browser window.",
   "permissions": ["tabs"],
   "icons": {
     "16": "assets/icons/icon-16.png",

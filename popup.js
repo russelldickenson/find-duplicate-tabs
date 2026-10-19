@@ -222,7 +222,7 @@ function render() {
     ? `${duplicateCount} tab${duplicateCount === 1 ? '' : 's'} can be closed across ${groupCount} duplicate set${groupCount === 1 ? '' : 's'}.`
     : showSimilar && similarGroups.length
       ? `No exact duplicates. ${similarGroups.length} possible duplicate set${similarGroups.length === 1 ? '' : 's'} to review.`
-      : 'Everything is tidy in this window.';
+      : '';
 
   for (const group of duplicateGroups) groupsElement.append(makeDuplicateGroupItem(group));
 
