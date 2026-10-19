@@ -9,7 +9,7 @@
 
 body { margin: 0; min-width: 370px; max-width: 450px; }
 
-main { padding: 20px 12px; }
+main { padding: 20px 12px 10px; }
 
 header { border-bottom: 1px solid #e7e3dc; padding-bottom: 16px; }
 
